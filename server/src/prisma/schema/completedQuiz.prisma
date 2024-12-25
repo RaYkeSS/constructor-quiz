@@ -1,0 +1,11 @@
+model CompletedQuiz {
+  id      String @id @default(cuid())
+  userId  String
+  quizId  String
+  user    User   @relation(fields: [userId], references: [id])
+  quiz    Quiz   @relation(fields: [quizId], references: [id])
+  correct Int
+  wrong   Int
+
+  @@unique([userId, quizId])
+}

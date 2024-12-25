@@ -14,9 +14,8 @@ export const userSchema = gql`
     
     type User {
         id: String!
-        name: String!
-        email: String!
-        password: String!
+        name: String
+        email: String
+        password: String
     }
-
 `;

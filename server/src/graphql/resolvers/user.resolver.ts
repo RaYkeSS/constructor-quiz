@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { instanceOf } from "graphql/jsutils/instanceOf";
+// import { instanceOf } from "graphql/jsutils/instanceOf";
 
 import { QueryUser, LoginUser, MutationAddUser } from "./types";
 

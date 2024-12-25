@@ -1,0 +1,8 @@
+model Answer {
+  id          String        @id @default(cuid())
+  value       String
+  correct     Boolean
+  questionId  String
+  question    Question      @relation(fields: [questionId], references: [id])
+  userAnswers UserAnswers[]
+}

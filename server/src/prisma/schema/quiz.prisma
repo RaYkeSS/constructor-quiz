@@ -1,0 +1,8 @@
+model Quiz {
+  id            String          @id @default(cuid())
+  title         String
+  authorId      String
+  questions     Question[]      @relation("Questions")
+  createdAt     DateTime        @default(now())
+  completedQuiz CompletedQuiz[]
+}

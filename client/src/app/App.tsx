@@ -1,10 +1,11 @@
 import {ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client';
+import { useCallback, useState } from "react";
 
+
+import { Button } from "shared/ui";
+import { AuthModal } from "features/auth";
 
 import './styles/global.css'
-
-import Auth from "features/auth";
-import { useState } from "react";
 
 const client = new ApolloClient({
     uri: 'http://localhost:4000/',
@@ -14,11 +15,15 @@ const client = new ApolloClient({
 function App() {
   const [isModalOpen, setModalOpen] = useState(false)
 
+  const handleButtonClick = useCallback(() => {
+    setModalOpen(true)
+  }, [])
+
   return (
     <ApolloProvider client={client}>
-      <button onClick={() => setModalOpen(true)}>Open</button>
+      <Button onClick={handleButtonClick}>Open</Button>
       <h1 className={"text-4xl mt-60"}>111111111111111111111111111111111111111111111111111111111111111111111111111111111</h1>
-        <Auth open={isModalOpen} setOpen={setModalOpen} />
+        <AuthModal open={isModalOpen} setOpen={setModalOpen} />
     </ApolloProvider>
   )
 }

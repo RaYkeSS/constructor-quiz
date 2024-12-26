@@ -1,8 +1,8 @@
 model User {
-  id            String          @id @default(cuid())
-  name          String
-  email         String          @unique
-  password      String
-  completedQuiz CompletedQuiz[]
-  userAnswers   UserAnswers[]
+  id             String          @id @default(cuid()) // Уникальный идентификатор
+  email          String          @unique // Почтовый адрес
+  password       String // Захешированный пароль
+  tests          Test[] // Связь с тестами, которые создал пользователь
+  completedTests CompletedTest[] // Связь с пройденными тестами
+  userAnswers    UserAnswer[] // Связь с ответами пользователей
 }

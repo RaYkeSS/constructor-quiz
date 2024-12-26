@@ -1,0 +1,9 @@
+model CompletedTest {
+  id     String @id @default(cuid()) // Уникальный идентификатор
+  userId String // Внешний ключ на таблицу User
+  testId String // Внешний ключ на таблицу Test
+  user   User   @relation(fields: [userId], references: [id]) // Связь с пользователем
+  test   Test   @relation(fields: [testId], references: [id]) // Связь с тестом
+  right  Int // Количество правильных ответов
+  wrong  Int // Количество неправильных ответов
+}

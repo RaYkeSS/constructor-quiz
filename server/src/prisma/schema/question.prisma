@@ -1,9 +1,15 @@
 model Question {
-  id          String   @id @default(cuid())
-  description String
-  type        String
-  order       String
-  quizId      String
-  quiz        Quiz     @relation("Questions", fields: [quizId], references: [id])
-  answer      Answer[]
+  id          String       @id @default(cuid()) // Уникальный идентификатор
+  description String // Текст вопроса
+  type        QuestionType // Тип вопроса (перечисление)
+  order       Int // Номер вопроса
+  testId      String // Внешний ключ на таблицу Test
+  test        Test         @relation(fields: [testId], references: [id]) // Связь с тестом
+  answers     Answer[] // Связь с ответами
+}
+
+enum QuestionType {
+  MULTIPLE_CHOICE // Несколько вариантов ответа
+  SINGLE_CHOICE // Один вариант ответа
+  TEXT_INPUT // Письменный ответ
 }

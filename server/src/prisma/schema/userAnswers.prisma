@@ -1,8 +1,0 @@
-model UserAnswers {
-  id       String  @id @default(cuid())
-  userId   String
-  answerId String
-  user     User    @relation(fields: [userId], references: [id])
-  answer   Answer  @relation(fields: [answerId], references: [id])
-  value    String?
-}

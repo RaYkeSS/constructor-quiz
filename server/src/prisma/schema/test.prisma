@@ -1,0 +1,9 @@
+model Test {
+  id             String          @id @default(cuid()) // Уникальный идентификатор
+  title          String // Название теста
+  authorId       String // Внешний ключ на таблицу User
+  createdAt      DateTime        @default(now()) // Дата создания теста
+  author         User            @relation(fields: [authorId], references: [id]) // Автор теста
+  questions      Question[] // Связь с вопросами
+  completedTests CompletedTest[] // Связь с пройденными тестами
+}

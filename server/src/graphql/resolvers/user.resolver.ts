@@ -1,29 +1,48 @@
-import { PrismaClient } from '@prisma/client';
-// import { instanceOf } from "graphql/jsutils/instanceOf";
+import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcrypt";
 
-import { QueryUser, LoginUser, MutationAddUser } from "./types";
+import { Resolvers } from "../generated/types";
 
 const prisma = new PrismaClient();
 
-export const userResolvers = {
+export const userResolvers: Resolvers = {
   Query: {
-    user: async (_: any, { email }: QueryUser) => await prisma.user.findUnique({ where: { email } }),
-    users: async () => await prisma.user.findMany(),
-    login: async (_: any, { email, password }: LoginUser) => await prisma.user.findUnique({ where: { email, password } }),
+    // Получение всех пользователей
+    getUsers: async () => {
+      return prisma.user.findMany();
+    },
+
+    // Получение пользователя по ID
+    getUserById: async (_, { id }) => {
+      return prisma.user.findUnique({
+        where: { id },
+      });
+    },
   },
   Mutation: {
-    addUser: async (_: any, { name, email, password }: MutationAddUser) => {
-      try {
-        return  await prisma.user.create({
-          data: {
-            name,
-            email,
-            password,
-          },
-        });
-      } catch (error) {
-        throw new Error('Error creating user: ' + (error as Error).message);
-      }
+    // Создание пользователя
+    createUser: async (_, { email, password }) => {
+      const hashedPassword = await bcrypt.hash(password, 10);
+      return prisma.user.create({
+        data: { email, password: hashedPassword },
+      });
+    },
+  },
+  User: {
+    tests: async (parent) => {
+      return prisma.test.findMany({
+        where: { authorId: parent.id },
+      });
+    },
+    completedTests: async (parent) => {
+      return prisma.completedTest.findMany({
+        where: { userId: parent.id },
+      });
+    },
+    userAnswers: async (parent) => {
+      return prisma.userAnswer.findMany({
+        where: { userId: parent.id },
+      });
     },
   },
 };

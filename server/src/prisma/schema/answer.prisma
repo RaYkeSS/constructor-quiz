@@ -1,8 +1,8 @@
 model Answer {
-  id          String        @id @default(cuid())
-  value       String
-  correct     Boolean
-  questionId  String
-  question    Question      @relation(fields: [questionId], references: [id])
-  userAnswers UserAnswers[]
+  id          String       @id @default(cuid()) // Уникальный идентификатор
+  value       String // Текст ответа
+  correct     Boolean // Правильность ответа
+  questionId  String // Внешний ключ на таблицу Question
+  question    Question     @relation(fields: [questionId], references: [id]) // Связь с вопросом
+  userAnswers UserAnswer[] // Связь с ответами пользователей
 }

@@ -1,15 +1,12 @@
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 dotenv.config({ path: "../.env" });
 
-import { ApolloServer } from 'apollo-server';
-import { typeDefs } from './graphql/schemas';
-import { resolvers } from './graphql/resolvers';
-import { context } from './graphql/context';
-
+import { ApolloServer } from "apollo-server";
+import { schema } from "./graphql/schema";
+import { context } from "./context";
 
 const server = new ApolloServer({
-  typeDefs,
-  resolvers,
+  schema,
   context,
 });
 

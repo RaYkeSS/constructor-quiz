@@ -1,8 +1,8 @@
 model UserAnswer {
   id       String  @id @default(cuid()) // Уникальный идентификатор
   userId   String // Внешний ключ на таблицу User
-  answerId String // Внешний ключ на таблицу Answer
-  value    String? // Ответ пользователя (для текстовых вопросов)
   user     User    @relation(fields: [userId], references: [id]) // Связь с пользователем
+  answerId String // Внешний ключ на таблицу Answer
   answer   Answer  @relation(fields: [answerId], references: [id]) // Связь с ответом
+  value    String? // Ответ пользователя (для текстовых вопросов)
 }

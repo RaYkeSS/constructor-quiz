@@ -11,3 +11,11 @@ export const User = objectType({
     t.list.field("userAnswers", { type: "UserAnswer" });
   },
 });
+
+export const UserWithToken = objectType({
+  name: "UserWithToken",
+  definition(t) {
+    t.string("token");
+    t.field("user", { type: "User" });
+  },
+});

@@ -1,6 +1,6 @@
 import { Query } from "./query.schema";
 import { Mutation } from "./mutation.schema";
-import { User } from "./user.schema";
+import { User, UserWithToken } from "./user.schema";
 import { Test } from "./test.schema";
 import { Question, QuestionType } from "./question.schema";
 import { Answer } from "./answer.schema";
@@ -11,6 +11,7 @@ export {
   Query,
   Mutation,
   User,
+  UserWithToken,
   Test,
   Question,
   QuestionType,

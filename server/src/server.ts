@@ -7,7 +7,10 @@ import { context } from "./context";
 
 const server = new ApolloServer({
   schema,
-  context,
+  context: ({ req }) => ({
+    ...context,
+    req,
+  }),
 });
 
 server.listen({ port: process.env.APOLLO_PORT }).then(({ url }) => {

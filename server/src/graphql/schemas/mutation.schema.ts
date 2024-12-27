@@ -1,22 +1,46 @@
 import { booleanArg, idArg, intArg, mutationType, stringArg } from "nexus";
+import { signJWT } from "../../auth";
 import bcrypt from "bcrypt";
 
 export const Mutation = mutationType({
   definition(t) {
     t.field("createUser", {
-      type: "User",
+      type: "UserWithToken",
       args: {
         email: stringArg(),
         password: stringArg(),
       },
       resolve: async (_, { email, password }, { prisma }) => {
         const hashedPassword = await bcrypt.hash(password, 10);
-        return prisma.user.create({
+        const user = await prisma.user.create({
           data: {
             email,
             password: hashedPassword,
           },
         });
+        return { user, token: signJWT(email) };
+      },
+    });
+
+    t.field("login", {
+      type: "UserWithToken", // Возвращаем токен
+      args: {
+        email: stringArg(),
+        password: stringArg(),
+      },
+      resolve: async (_, { email, password }, { prisma }) => {
+        const user = await prisma.user.findUnique({ where: { email } });
+
+        if (!user) {
+          throw new Error("User not found");
+        }
+
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if (!isPasswordValid) {
+          throw new Error("Invalid password");
+        }
+
+        return { user, token: signJWT(email) };
       },
     });
 
@@ -26,7 +50,9 @@ export const Mutation = mutationType({
         title: stringArg(),
         authorId: stringArg(),
       },
-      resolve: (_, { title, authorId }, { prisma }) => {
+      resolve: (_, { title, authorId }, { prisma, req, authenticate }) => {
+        const auth = authenticate(req);
+        console.log(auth);
         return prisma.test.create({
           data: {
             title,

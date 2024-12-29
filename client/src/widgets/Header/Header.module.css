@@ -1,0 +1,15 @@
+.header {
+    @apply flex items-center justify-between p-4 bg-light-background shadow;
+}
+
+.logoDiv {
+    @apply flex items-center;
+}
+
+.img {
+    @apply h-8
+}
+
+.nav {
+    @apply flex space-x-4;
+}

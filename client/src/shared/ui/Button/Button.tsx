@@ -1,26 +1,24 @@
-import { useCallback, MouseEvent, memo } from "react";
+import { memo } from "react";
 
-
-import ButtonProps from './Button.types.ts'
+import ButtonProps from "./Button.types.ts";
 import styles from "./Button.module.css";
 
-
-const ButtonComponent  = ({onClick, className, type, children}: ButtonProps) => {
-
-  const onClickMemo = useCallback((e:  MouseEvent<HTMLButtonElement>) => {
-    onClick ? onClick(e) : null;
-  }, [onClick])
-
+export const ButtonComponent = ({
+  onClick,
+  className,
+  type,
+  children,
+}: ButtonProps) => {
   return (
     <button
-      className={`${styles.button} ${className ? className : ''}`.trim()}
+      className={`${styles.button} ${className ? className : ""}`.trim()}
       type={type}
-      onClick={onClickMemo}
+      onClick={onClick}
     >
       {children}
     </button>
   );
-}
+};
 
 const Button = memo(ButtonComponent);
 

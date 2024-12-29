@@ -1,0 +1,7 @@
+.loader {
+    @apply flex justify-center items-center;
+}
+
+.spinner {
+    @apply animate-spin h-5 w-5 border-4 border-light-primary border-t-transparent rounded-full;
+}

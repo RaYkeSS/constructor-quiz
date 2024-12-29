@@ -1,0 +1,3 @@
+.link {
+    @apply text-light-primary hover:text-light-secondary transition duration-200
+}

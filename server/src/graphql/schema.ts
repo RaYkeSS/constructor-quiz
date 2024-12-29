@@ -1,5 +1,4 @@
 import { makeSchema } from "nexus";
-
 import {
   Query,
   Mutation,
@@ -12,6 +11,7 @@ import {
   CompletedTest,
   UserAnswer,
 } from "./schemas";
+import path from "node:path";
 
 // Создание схемы
 export const schema = makeSchema({
@@ -28,3 +28,6 @@ export const schema = makeSchema({
     UserAnswer,
   ],
 });
+// outputs: {
+//   schema: path.join(__dirname, "schema.graphql"), // Если вам нужен .graphql файл
+// },

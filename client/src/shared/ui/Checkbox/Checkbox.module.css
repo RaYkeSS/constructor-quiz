@@ -1,0 +1,7 @@
+.checkbox {
+    @apply h-5 w-5 text-light-primary border-light-border rounded focus:ring-light-primary;
+}
+
+.span {
+    @apply ml-2 text-light-text;
+}

@@ -1,26 +1,4 @@
 .input {
     @apply
-    w-full
-    rounded-[7px]
-    border
-    border-blue-200
-    bg-transparent
-    px-3
-    py-2.5
-    font-sans
-    text-sm
-    font-normal
-    text-blue-700
-    outline
-    outline-0
-    transition-all
-    placeholder-shown:border
-    placeholder-shown:border-blue-200
-    placeholder-shown:border-t-blue-200
-    focus:border-2
-    focus:border-pink-500
-    focus:border-t-transparent
-    focus:outline-0
-    disabled:border-0
-    disabled:bg-blue-50;
+    border border-light-border rounded py-2 px-4 focus:outline-none focus:ring-2 focus:ring-light-primary
 }

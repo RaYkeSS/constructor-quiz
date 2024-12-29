@@ -28,7 +28,8 @@
       "@entities/*": ["@entities/*"],
       "@features/*": ["@features/*"],
       "@pages/*": ["@pages/*"],
-      "@shared/*": ["@shared/*"]
+      "@shared/*": ["@shared/*"],
+      "@widgets/*": ["@widgets/*"],
     },
   },
   "include": ["src"]

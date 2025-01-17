@@ -1,4 +1,7 @@
-import Auth from './ui/Auth.tsx'
-import AuthModal from './ui/AuthModal.tsx'
+import { Registration } from "./registration";
+import { RegistrationModal } from "./registration";
 
-export { Auth, AuthModal };
+import { Login } from "./login";
+import { LoginModal } from "./login";
+
+export { Registration, RegistrationModal, Login, LoginModal };

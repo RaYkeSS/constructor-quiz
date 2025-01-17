@@ -7,9 +7,6 @@
 }
 
 .img {
-    @apply h-8
+    @apply h-10
 }
 
-.nav {
-    @apply flex space-x-4;
-}

@@ -1,67 +1,47 @@
-import { useCallback, useEffect, useState } from "react";
+import { Header } from "~/widgets";
 
-import { AuthModal } from "features/auth";
-import { Header } from "widgets";
-import { Button } from "shared/ui";
+import "~/shared/styles/global.css";
+// import { useEffect } from "react";
+// import { gql, useMutation } from "@apollo/client";
 
-import { gql, useMutation } from "@apollo/client";
-
-import schema from "./graphql.schema.json";
-
-import "shared/styles/global.css";
-
-// const gTest = gql`
+// export const gTest = gql`
 //   mutation Mutation($email: String!, $password: String!) {
-//     createUser(email: $email, password: $password) {
-//       token
-//       user {
-//         email
-//         id
-//         password
-//       }
+//     login(email: $email, password: $password) {
+//       email
+//       id
 //     }
 //   }
 // `;
 
-const gTest = gql`
-  ${createUser}
-`;
-
 function App() {
-  console.log(schema);
-  const [isModalOpen, setModalOpen] = useState(false);
-
-  const [sometest, { data, loading, error }] = useMutation(gTest);
-
-  const handleButtonClick = useCallback(() => {
-    setModalOpen(true);
-  }, []);
-
-  useEffect(() => {
-    const asyncTest = async () => {
-      await sometest({
-        variables: { email: "front12346", password: "front22346" },
-      });
-      console.log(data);
-      console.log(loading);
-      console.log(error);
-    };
-    asyncTest();
-  }, []);
+  // const [sometest, { data, loading, error }] = useMutation(gTest);
+  //
+  // useEffect(() => {
+  //   const asyncTest = async () => {
+  //     await sometest({
+  //       variables: { email: "test2025@test.ru", password: "test2025@test.ru" },
+  //     });
+  //     console.log(data);
+  //     console.log("loading " + loading);
+  //     console.log("error " + error);
+  //   };
+  //   asyncTest();
+  // }, []);
 
   return (
     <>
-      <Header
-        isAuthenticated={false}
-        onLogin={() => {}}
-        onRegister={() => {}}
-        userProfile={{ name: "oleg" }}
-      />
-      <Button onClick={handleButtonClick}>Open</Button>
-      <h1 className={"text-4xl mt-60"}>
-        111111111111111111111111111111111111111111111111111111111111111111111111111111111
-      </h1>
-      <AuthModal open={isModalOpen} setOpen={setModalOpen} />
+      <Header />
+      <h1 className={"text-4xl mt-60"}></h1>
+      <div
+        style={{
+          backgroundColor: "darkgray",
+          width: "70vw",
+          height: "30vh",
+          padding: "10vh",
+          margin: "auto",
+          marginTop: "10vh",
+        }}
+      ></div>
     </>
   );
 }

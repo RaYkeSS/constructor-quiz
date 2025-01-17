@@ -5,4 +5,5 @@ export interface InputProps {
   type?: HTMLInputTypeAttribute;
   onChange?: ChangeEventHandler<HTMLInputElement> | undefined;
   placeholder?: string;
+  value?: string;
 }

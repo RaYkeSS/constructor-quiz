@@ -1,0 +1,22 @@
+.form {
+    @apply
+    flex
+    flex-col
+    gap-y-8
+    w-96
+    h-96
+    z-10
+    absolute
+    mx-auto
+    my-auto
+    p-6
+    border
+    border-gray-200
+    rounded-lg
+    bg-gray-700
+    inset-0
+    shadow-2xl
+    ;
+}
+
+

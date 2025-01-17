@@ -8,12 +8,14 @@ export const ButtonComponent = ({
   className,
   type,
   children,
+  ...props
 }: ButtonProps) => {
   return (
     <button
       className={`${styles.button} ${className ? className : ""}`.trim()}
       type={type}
       onClick={onClick}
+      {...props}
     >
       {children}
     </button>

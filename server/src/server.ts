@@ -7,10 +7,18 @@ import { context } from "./context";
 
 const server = new ApolloServer({
   schema,
-  context: ({ req }) => ({
+  context: ({ req, res }) => ({
     ...context,
     req,
+    res,
   }),
+  formatError: (err: Error) => {
+    return new Error(err.message);
+  },
+  cors: {
+    origin: ["http://localhost:5173", "https://studio.apollographql.com"],
+    credentials: true,
+  },
 });
 
 server.listen({ port: process.env.APOLLO_PORT }).then(({ url }) => {

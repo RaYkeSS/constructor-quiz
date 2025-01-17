@@ -1,4 +1,4 @@
-import { InputProps } from "@/shared/ui/Input/Input.types.ts";
+import { InputProps } from "~/shared/ui/Input/Input.types.ts";
 import styles from "./Input.module.css";
 
 const Input = ({
@@ -6,6 +6,7 @@ const Input = ({
   type = "text",
   onChange,
   placeholder = "",
+  value,
 }: InputProps) => {
   return (
     <input
@@ -13,6 +14,7 @@ const Input = ({
       type={type}
       placeholder={placeholder}
       onChange={onChange}
+      value={value}
     />
   );
 };

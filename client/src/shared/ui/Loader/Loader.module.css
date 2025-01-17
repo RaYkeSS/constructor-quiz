@@ -5,3 +5,15 @@
 .spinner {
     @apply animate-spin h-5 w-5 border-4 border-light-primary border-t-transparent rounded-full;
 }
+
+.loader-lg {
+    @apply h-full w-full;
+}
+
+.lg {
+    @apply h-52 w-52;
+}
+
+.md {
+    @apply h-24 w-24;
+}

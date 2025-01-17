@@ -5,12 +5,16 @@ import bcrypt from "bcrypt";
 export const Mutation = mutationType({
   definition(t) {
     t.field("createUser", {
-      type: "UserWithToken",
+      type: "User",
       args: {
         email: stringArg(),
         password: stringArg(),
       },
-      resolve: async (_, { email, password }, { prisma }) => {
+      resolve: async (_, { email, password }, { prisma, res }) => {
+        const isUserExists = await prisma.user.findUnique({ where: { email } });
+        if (isUserExists) {
+          throw new Error("User with email already exists");
+        }
         const hashedPassword = await bcrypt.hash(password, 10);
         const user = await prisma.user.create({
           data: {
@@ -18,17 +22,23 @@ export const Mutation = mutationType({
             password: hashedPassword,
           },
         });
-        return { user, token: signJWT(email) };
+        const token = signJWT(user.id);
+        res.cookie("token", token, {
+          httpOnly: true,
+          secure: true,
+          expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
+        });
+        return { user };
       },
     });
 
     t.field("login", {
-      type: "UserWithToken", // Возвращаем токен
+      type: "User", // Возвращаем токен
       args: {
         email: stringArg(),
         password: stringArg(),
       },
-      resolve: async (_, { email, password }, { prisma }) => {
+      resolve: async (_, { email, password }, { prisma, res, req }) => {
         const user = await prisma.user.findUnique({ where: { email } });
 
         if (!user) {
@@ -39,8 +49,19 @@ export const Mutation = mutationType({
         if (!isPasswordValid) {
           throw new Error("Invalid password");
         }
-
-        return { user, token: signJWT(email) };
+        const token = signJWT(user.id);
+        res.cookie("Token", token, {
+          httpOnly: true,
+          secure: true,
+          sameSite: true,
+          expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
+        });
+        if (req && req.headers) {
+          const cookies = req.headers.cookie;
+          console.log(cookies);
+          console.log(typeof cookies);
+        }
+        return user;
       },
     });
 

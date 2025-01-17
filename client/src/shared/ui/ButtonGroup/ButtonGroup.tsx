@@ -1,4 +1,4 @@
-import { Button } from "shared/ui";
+import { Button } from "~/shared/ui";
 import ButtonGroupProps from "./ButtonGroup.types.ts";
 
 import styles from "./ButtonGroup.module.css";

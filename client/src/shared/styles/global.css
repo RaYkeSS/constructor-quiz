@@ -40,6 +40,6 @@
 
 @layer components {
     body {
-        @apply bg-gray-500 min-w-full min-h-full;
+        @apply bg-gray-500 min-w-full min-h-full m-0;
     }
 }

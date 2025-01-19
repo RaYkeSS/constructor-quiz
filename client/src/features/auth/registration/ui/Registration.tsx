@@ -6,7 +6,7 @@ import { Button, Input, Link, Loader } from "~/shared/ui";
 import handleAuth from "../model/handleAuth.ts";
 
 import { CREATE_USER } from "../model/schema.ts";
-import { GET_USER } from "~/graphql";
+import { GET_USER } from "~/entities/user";
 
 import styles from "./Registration.module.css";
 

@@ -1,3 +1,15 @@
 .link {
     @apply text-light-primary hover:text-light-secondary transition duration-200
 }
+
+.navlink {
+    @apply relative inline-block px-4 py-2 text-light-primary hover:text-light-secondary hover:bg-blue-50 transition-colors duration-300 rounded-lg;
+}
+
+.navlink:hover {
+    @apply shadow-lg;
+}
+
+.active {
+    @apply bg-blue-100 text-blue-600 font-semibold shadow-md;
+}

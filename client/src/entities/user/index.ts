@@ -1,6 +1,4 @@
-import UserCard from './ui/UserCard';
-import type {User } from './model/';
-import {GET_USERS, GET_USER } from './model/';
+import { GET_USER, GET_USERS } from "./model";
+import { useUserFromCache } from "./hooks/useUserFromCache";
 
-export default UserCard;
-export {User, GET_USERS, GET_USER};
+export { GET_USER, GET_USERS, useUserFromCache };

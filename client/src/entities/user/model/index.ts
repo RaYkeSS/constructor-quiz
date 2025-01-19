@@ -1,2 +1,3 @@
-export type {User} from './types.ts';
-export {GET_USERS, GET_USER} from './queries.ts'
+import { GET_USER, GET_USERS } from "./schema.ts";
+
+export { GET_USER, GET_USERS };

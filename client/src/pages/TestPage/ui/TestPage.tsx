@@ -1,10 +1,10 @@
-import { Header } from "~/widgets/Header";
+import { Layout } from "~/shared/ui";
+import { Header, Footer } from "~/widgets";
 
 export const TestPage = () => {
   return (
-    <>
-      <Header />
-      <div>TestPage</div>;
-    </>
+    <Layout header={<Header />} footer={<Footer />}>
+      <div>TestPage</div>
+    </Layout>
   );
 };

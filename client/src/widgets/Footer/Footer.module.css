@@ -1,0 +1,7 @@
+.container {
+    @apply flex justify-between items-center bg-light-background dark:bg-dark-background text-white p-4
+}
+
+.link {
+    @apply text-white hover:underline
+}

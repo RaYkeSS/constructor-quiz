@@ -1,5 +1,5 @@
 .header {
-    @apply flex items-center justify-between p-4 bg-light-background shadow;
+    @apply flex items-center justify-between p-4 bg-light-background dark:bg-dark-background shadow;
 }
 
 .logoDiv {

@@ -1,0 +1,19 @@
+.container {
+@apply grid grid-cols-5 grid-rows-[auto_1fr_auto] gap-4 min-h-screen;
+}
+
+.header {
+    @apply col-span-5;
+}
+
+.aside {
+    @apply row-span-1 col-start-1 row-start-2 bg-gray-200 p-4 m-4;
+}
+
+.main {
+    @apply col-span-3 row-span-1 col-start-2 row-start-2 p-4;
+}
+
+.footer {
+    @apply col-span-5;
+}

@@ -1,11 +1,11 @@
 import { Header } from "~/widgets";
 import { Login } from "~/features/auth";
+import { Layout } from "~/shared/ui";
 
 export const AuthPage = () => {
   return (
-    <>
-      <Header />
+    <Layout header={<Header />}>
       <Login />
-    </>
+    </Layout>
   );
 };

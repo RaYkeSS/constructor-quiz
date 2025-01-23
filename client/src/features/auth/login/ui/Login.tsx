@@ -3,7 +3,7 @@ import { type ChangeEvent } from "react";
 import { Button, Input, Loader } from "~/shared/ui";
 import styles from "./Login.module.css";
 import { useState } from "react";
-import { useLogin } from "../model/useLogin.ts";
+import { useLogin } from "../hooks/useLogin.ts";
 
 export const Login = () => {
   const [email, setEmail] = useState("");

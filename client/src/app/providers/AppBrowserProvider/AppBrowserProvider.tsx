@@ -8,16 +8,18 @@ import { AuthPage } from "~/pages/AuthPage/ui/AuthPage.tsx";
 
 import { ProtectedRoutes } from "./ProtectedRoutes.tsx";
 
+import { ENDPOINTS } from "~/shared/endpoints";
+
 export const AppBrowserProvider = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<AuthPage />} />
+        <Route path={ENDPOINTS.home} element={<HomePage />} />
+        <Route path={ENDPOINTS.login} element={<AuthPage />} />
         <Route element={<ProtectedRoutes />}>
-          <Route path="test" element={<TestPage />} />
+          <Route path={ENDPOINTS.test} element={<TestPage />} />
         </Route>
-        <Route path="*" element={<NotFoundPage />} />
+        <Route path={ENDPOINTS.notfound} element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   );

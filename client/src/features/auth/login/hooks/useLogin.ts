@@ -1,24 +1,20 @@
+import { MouseEvent } from "react";
 import { ApolloError, useMutation } from "@apollo/client";
 import { LOGIN_USER } from "~/features/auth/login/model/schema.ts";
-import { GET_USER } from "~/entities/user";
+import { writeUserToCache } from "~/entities/user/api/userApi.ts";
+import { useNavigate } from "react-router";
+
+import { ENDPOINTS } from "~/shared/endpoints";
 
 export const useLogin = () => {
+  const navigate = useNavigate();
   const [login, { loading, error }] = useMutation(LOGIN_USER, {
     update(cache, { data: { login } }) {
-      cache.writeQuery({
-        query: GET_USER,
-        // variables: { id: login.id },
-        data: {
-          getUser: {
-            __typename: "User",
-            ...login,
-          },
-        },
-      });
+      writeUserToCache(cache, login);
     },
   });
 
-  const handleLogin = async (e: React.MouseEvent) => {
+  const handleLogin = async (e: MouseEvent) => {
     e.preventDefault();
     // console.log(loading);
     try {
@@ -29,6 +25,7 @@ export const useLogin = () => {
         },
       });
       console.log("Login successful:", data);
+      navigate(ENDPOINTS.home);
     } catch (error) {
       if (error instanceof ApolloError) {
         console.error("ApolloError:", error.message);

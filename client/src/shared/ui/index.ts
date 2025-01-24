@@ -7,7 +7,8 @@ import Loader from "./Loader/Loader.tsx";
 import Modal from "./Modal/Modal.tsx";
 import Select from "./Select/Select.tsx";
 import { Container } from "./Container/Container.tsx";
-import { Layout } from "./Layout/Layout.tsx";
+import { Layout } from "./Layout";
+import { Title } from "./Title";
 
 export {
   Button,
@@ -21,4 +22,5 @@ export {
   Select,
   Container,
   Layout,
+  Title,
 };

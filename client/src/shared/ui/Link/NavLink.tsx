@@ -1,6 +1,4 @@
-import { NavLink as NavRouterLink } from "react-router";
-
-import { LinkProps } from "./Link.types.ts";
+import { NavLink as NavRouterLink, NavLinkProps } from "react-router";
 
 import styles from "./Link.module.css";
 
@@ -9,9 +7,10 @@ export const NavLink = ({
   children,
   className = "",
   ...props
-}: LinkProps) => {
+}: NavLinkProps) => {
   return (
     <NavRouterLink
+      end
       to={to}
       className={({ isActive }: { isActive: boolean }) =>
         `${styles.navlink} ${className} ${isActive ? styles.active : "hover:text-blue-500"}`

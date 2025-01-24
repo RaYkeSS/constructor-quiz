@@ -1,6 +1,4 @@
-import { Link as RouterLink } from "react-router";
-
-import { LinkProps } from "./Link.types.ts";
+import { Link as RouterLink, LinkProps } from "react-router";
 
 import styles from "./Link.module.css";
 

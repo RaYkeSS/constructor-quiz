@@ -1,5 +1,19 @@
 .container {
-    @apply border border-gray-200 rounded-lg shadow-md p-4 m-2 bg-white hover:shadow-lg transition-shadow duration-300
+    @apply rounded-lg
+    shadow-md
+    p-4
+    m-2
+    bg-dark-background
+    shadow-dark-background
+
+    dark:bg-light-background
+    dark:shadow-light-background
+
+    hover:shadow-inner
+    hover:shadow-light-background
+    hover:dark:shadow-dark-background
+    transition-shadow
+    duration-300
 }
 
 .title {

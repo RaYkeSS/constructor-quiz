@@ -9,6 +9,7 @@ export const Navbar = () => {
       <NavLink to={ENDPOINTS.my_tests}>Мои Тесты</NavLink>
       <NavLink to={ENDPOINTS.test}>Все тесты</NavLink>
       <NavLink to={ENDPOINTS.completed_tests}>Пройденные тесты</NavLink>
+      <NavLink to={ENDPOINTS.create_tests}>Создать тест +</NavLink>
     </nav>
   );
 };

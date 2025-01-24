@@ -13,7 +13,7 @@ export const TestList = ({ tests }: { tests: ITest[] }) => {
           title={test.title}
           questions={test.questions}
           createdAt={test.createdAt}
-          author={test.author}
+          authorId={test.authorId}
         />
       ))}
     </div>

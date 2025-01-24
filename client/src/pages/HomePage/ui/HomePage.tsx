@@ -1,11 +1,11 @@
 // import { Container } from "~/shared/ui";
-import { Layout } from "~/shared/ui";
+import { Layout, Title } from "~/shared/ui";
 import { Header, Footer } from "~/widgets";
 
 export const HomePage = () => {
   return (
     <Layout header={<Header />} footer={<Footer />}>
-      <h1 className={"text-4xl mt-60"}>Home</h1>
+      <Title variant="h1">Home</Title>
       <div
         style={{
           backgroundColor: "darkgray",

@@ -1,4 +1,4 @@
-import { enumType, objectType } from "nexus";
+import { enumType, inputObjectType, objectType } from "nexus";
 
 export const Question = objectType({
   name: "Question",
@@ -16,4 +16,13 @@ export const Question = objectType({
 export const QuestionType = enumType({
   name: "QuestionType",
   members: ["MULTIPLE_CHOICE", "SINGLE_CHOICE", "TEXT_INPUT"],
+});
+
+export const QuestionWithAnswersInput = inputObjectType({
+  name: "QuestionWithAnswersInput",
+  definition(t) {
+    t.string("description");
+    t.field("type", { type: "QuestionType" });
+    t.list.field("answers", { type: "AnswerInput" });
+  },
 });

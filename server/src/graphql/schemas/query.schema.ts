@@ -20,7 +20,15 @@ export const Query = queryType({
     t.list.field("getTests", {
       type: "Test",
       resolve: (_, __, { prisma }) => {
-        return prisma.test.findMany();
+        return prisma.test.findMany({
+          include: {
+            questions: {
+              include: {
+                answers: true,
+              },
+            },
+          },
+        });
       },
     });
 
@@ -36,7 +44,12 @@ export const Query = queryType({
       type: "Question",
       args: { testId: idArg() },
       resolve: (_, { testId }, { prisma }) => {
-        return prisma.question.findMany({ where: { testId } });
+        return prisma.question.findMany({
+          where: { testId },
+          include: {
+            answers: true,
+          },
+        });
       },
     });
 

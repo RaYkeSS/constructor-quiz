@@ -1,4 +1,11 @@
-import { booleanArg, idArg, intArg, mutationType, stringArg } from "nexus";
+import {
+  booleanArg,
+  idArg,
+  intArg,
+  list,
+  mutationType,
+  stringArg,
+} from "nexus";
 import { signJWT } from "../../auth";
 import bcrypt from "bcrypt";
 
@@ -68,18 +75,46 @@ export const Mutation = mutationType({
     t.field("createTest", {
       type: "Test",
       args: {
-        title: stringArg(),
         authorId: stringArg(),
+        title: stringArg(),
+        questions: list("QuestionWithAnswersInput"),
       },
-      resolve: (_, { title, authorId }, { prisma, req, authenticate }) => {
-        const auth = authenticate(req);
-        console.log(auth);
-        return prisma.test.create({
+      resolve: async (
+        _,
+        { title, authorId, questions },
+        { prisma, req, authenticate },
+      ) => {
+        // const auth = authenticate(req);
+        console.log(req, authenticate);
+
+        const test = await prisma.test.create({
           data: {
             title,
             authorId,
           },
         });
+
+        if (questions && questions.length > 0) {
+          for (const question of questions) {
+            const createdQuestion = await prisma.question.create({
+              data: {
+                description: question.description,
+                type: question.type,
+                testId: test.id,
+              },
+            });
+
+            if (question.answers && question.answers.length > 0) {
+              await prisma.answer.createMany({
+                data: question.answers.map((answer: any) => ({
+                  value: answer.value,
+                  correct: answer.correct,
+                  questionId: createdQuestion.id,
+                })),
+              });
+            }
+          }
+        }
       },
     });
 

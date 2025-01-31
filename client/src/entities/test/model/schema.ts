@@ -6,6 +6,8 @@ export const GET_TESTS = gql`
       title
       questions {
         id
+        order
+        description
       }
       authorId
       createdAt
@@ -14,4 +16,4 @@ export const GET_TESTS = gql`
   }
 `;
 
-export const CREATE_TEST = gql``;
+// export const CREATE_TEST = gql``;
